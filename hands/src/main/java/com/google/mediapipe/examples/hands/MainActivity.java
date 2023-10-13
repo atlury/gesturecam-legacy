@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
     private Hands hands;
     private InputSource inputSource = InputSource.UNKNOWN;
     // the selfie camera will be shown on start-up
-    private CameraInput.CameraFacing cameraFaceMediapipe = CameraInput.CameraFacing.FRONT;
-    private int cameraFaceCameraX = CameraSelector.LENS_FACING_FRONT;
+    private CameraInput.CameraFacing cameraFaceMediapipe = CameraInput.CameraFacing.BACK;
+    private int cameraFaceCameraX = CameraSelector.LENS_FACING_BACK;
     // Live camera demo UI and camera components.
     private CameraInput cameraInput;
     private SolutionGlSurfaceView<HandsResult> glSurfaceView;
