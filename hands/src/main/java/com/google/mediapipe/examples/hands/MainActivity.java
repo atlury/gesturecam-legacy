@@ -144,11 +144,11 @@ public class MainActivity extends AppCompatActivity {
       public void onClick(View v) {
           if(!captureFlag) {
               Intent intent = new Intent();
-              /* 开启Pictures画面Type设定为image */
+              /* Open the Pictures screen with Type set to image. */
               intent.setType("image/*");
-              /* 使用Intent.ACTION_GET_CONTENT这个Action */
+              /* Use Intent.ACTION_GET_CONTENT for this Action */
               intent.setAction(Intent.ACTION_GET_CONTENT);
-              /* 取得相片后返回本画面 */
+              /* Return to this screen after acquiring the photo */
               startActivityForResult(intent, 1);
               _btn_save_img.setVisibility(View.VISIBLE);
               _btn_save_cen.setVisibility(View.VISIBLE);
