@@ -10,9 +10,9 @@ import android.os.CountDownTimer;
 
 public class DrawingUtils {
     /**
-     * 设置水印图片在左上角
+     * Set the watermark image in the upper left corner
      *
-     * @param context     上下文
+     * @param context     context
      * @param src
      * @param watermark
      * @param paddingLeft
@@ -30,25 +30,25 @@ public class DrawingUtils {
         }
         int width = src.getWidth();
         int height = src.getHeight();
-        //创建一个bitmap
+        //create a bitmap
         Bitmap newb = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);// 创建一个新的和SRC长度宽度一样的位图
-        //将该图片作为画布
+        //Use this image as a canvas
         Canvas canvas = new Canvas(newb);
-        //在画布 0，0坐标上开始绘制原始图片
+        //Start drawing the original image on the canvas at coordinates 0, 0
         canvas.drawBitmap(src, 0, 0, null);
-        //在画布上绘制水印图片
+        //Drawing a watermarked image on a canvas
         canvas.drawBitmap(watermark, paddingLeft, paddingTop, null);
-        // 保存
+        // save (a file etc) (computing)
         canvas.save();
-        // 存储
+        // stockpile
         canvas.restore();
         return newb;
     }
 
     /**
-     * 设置水印图片在右下角
+     * Set the watermark image in the lower right corner
      *
-     * @param context       上下文
+     * @param context       context
      * @param src
      * @param watermark
      * @param paddingRight
@@ -62,7 +62,7 @@ public class DrawingUtils {
     }
 
     /**
-     * 设置水印图片到右上角
+     * Set watermark image to top right corner
      *
      * @param context
      * @param src
@@ -78,7 +78,7 @@ public class DrawingUtils {
     }
 
     /**
-     * 设置水印图片到左下角
+     * Set the watermark image to the bottom left corner
      *
      * @param context
      * @param src
@@ -93,7 +93,7 @@ public class DrawingUtils {
     }
 
     /**
-     * 设置水印图片到中间
+     * Set the watermark image to the center
      *
      * @param src
      * @param watermark
@@ -106,7 +106,7 @@ public class DrawingUtils {
     }
 
     /**
-     * 给图片添加文字到左上角
+     * Add text to the top left corner of the image
      *
      * @param context
      * @param bitmap
@@ -125,7 +125,7 @@ public class DrawingUtils {
     }
 
     /**
-     * 绘制文字到右下角
+     * Draw text to the lower right corner
      *
      * @param context
      * @param bitmap
@@ -146,7 +146,7 @@ public class DrawingUtils {
     }
 
     /**
-     * 绘制文字到右上方
+     * Draw text to the top right
      *
      * @param context
      * @param bitmap
@@ -169,7 +169,7 @@ public class DrawingUtils {
     }
 
     /**
-     * 绘制文字到左下方
+     * Draw text to the lower left
      *
      * @param context
      * @param bitmap
@@ -192,7 +192,7 @@ public class DrawingUtils {
     }
 
     /**
-     * 绘制文字到中间
+     * Draw text to the center
      *
      * @param context
      * @param bitmap
@@ -212,12 +212,12 @@ public class DrawingUtils {
                 (bitmap.getHeight() + bounds.height()) / 2);
     }
 
-    //图片上绘制文字
+    //Drawing text on pictures
     private static Bitmap drawTextToBitmap(Context context, Bitmap bitmap, String text, Paint paint, Rect bounds, int paddingLeft, int paddingTop) {
         android.graphics.Bitmap.Config bitmapConfig = bitmap.getConfig();
 
-        paint.setDither(true); // 获取跟清晰的图像采样
-        paint.setFilterBitmap(true);// 过滤一些
+        paint.setDither(true); // Getting clearer image samples
+        paint.setFilterBitmap(true);// Filter some
         if (bitmapConfig == null) {
             bitmapConfig = android.graphics.Bitmap.Config.ARGB_8888;
         }
@@ -229,7 +229,7 @@ public class DrawingUtils {
     }
 
     /**
-     * 缩放图片
+     * Zoom Pictures
      *
      * @param src
      * @param w
@@ -240,23 +240,23 @@ public class DrawingUtils {
         if (w == 0 || h == 0 || src == null) {
             return src;
         } else {
-            // 记录src的宽高
+            // Record the width and height of src
             int width = src.getWidth();
             int height = src.getHeight();
-            // 创建一个matrix容器
+            // Create a matrix container
             Matrix matrix = new Matrix();
-            // 计算缩放比例
+            // Calculating scaling
             float scaleWidth = (float) (w / width);
             float scaleHeight = (float) (h / height);
-            // 开始缩放
+            // Start Scaling
             matrix.postScale(scaleWidth, scaleHeight);
-            // 创建缩放后的图片
+            // Creating scaled images
             return Bitmap.createBitmap(src, 0, 0, width, height, matrix, true);
         }
     }
 
     /**
-     * dip转pix
+     * dip to pix
      *
      * @param context
      * @param dp
