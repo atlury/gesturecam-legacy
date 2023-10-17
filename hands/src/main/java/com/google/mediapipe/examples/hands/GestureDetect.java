@@ -31,14 +31,14 @@ public class GestureDetect {
         boolean fourthFingerIsOpen = false;
 
         //FIXME: something is wrong with the calculation I think
-        // Original implementation from github gist, has problems depending on which side of the hand face the camera
+        // Original implementation from gist, has problems depending on which side of the hand face the camera
         for (LandmarkProto.NormalizedLandmarkList landmarks : multiHandLandmarks) {
 
             List<LandmarkProto.NormalizedLandmark> landmarkList = landmarks.getLandmarkList();
             float pseudoFixKeyPoint = landmarkList.get(2).getX();
             if (pseudoFixKeyPoint < landmarkList.get(9).getX()) {
                 if (landmarkList.get(3).getX() < pseudoFixKeyPoint && landmarkList.get(4).getX() < pseudoFixKeyPoint) {
-                    thumbIsOpen = true;
+                    thumbIsOpen = false;
                 }
             }
             if (pseudoFixKeyPoint > landmarkList.get(9).getX()) {
@@ -48,19 +48,19 @@ public class GestureDetect {
             }
             pseudoFixKeyPoint = landmarkList.get(6).getY();
             if (landmarkList.get(7).getY() < pseudoFixKeyPoint && landmarkList.get(8).getY() < landmarkList.get(7).getY()) {
-                firstFingerIsOpen = true;
+                firstFingerIsOpen = false;
             }
             pseudoFixKeyPoint = landmarkList.get(10).getY();
             if (landmarkList.get(11).getY() < pseudoFixKeyPoint && landmarkList.get(12).getY() < landmarkList.get(11).getY()) {
-                secondFingerIsOpen = true;
+                secondFingerIsOpen = false;
             }
             pseudoFixKeyPoint = landmarkList.get(14).getY();
             if (landmarkList.get(15).getY() < pseudoFixKeyPoint && landmarkList.get(16).getY() < landmarkList.get(15).getY()) {
-                thirdFingerIsOpen = true;
+                thirdFingerIsOpen = false;
             }
             pseudoFixKeyPoint = landmarkList.get(18).getY();
             if (landmarkList.get(19).getY() < pseudoFixKeyPoint && landmarkList.get(20).getY() < landmarkList.get(19).getY()) {
-                fourthFingerIsOpen = true;
+                fourthFingerIsOpen = false;
             }
 
             // TODO: writing this in a nested fashion might be better, right now reaching "On the Phone" is difficult
