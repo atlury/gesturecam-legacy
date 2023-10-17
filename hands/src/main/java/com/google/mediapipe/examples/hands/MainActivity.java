@@ -300,43 +300,21 @@ public class MainActivity extends AppCompatActivity {
                 if (!captureFlag) {
                     lastGesture = HandGesture.UNDEFINED;
                     lastGesture = GestureDetect.handGestureCalculator(handsResult.multiHandLandmarks(), lastGesture);
-                    try {
-                        recognizedGesture.setText(getEmoji(GestureDetect.gestureEmojis.get(lastGesture)));
-                        curGesture = (String) recognizedGesture.getText();
 
-                          // Send the determined gesture as an Intent to another package
-                        //Intent gestureIntent = new Intent();
-                        //gestureIntent.setAction("com.otherpackage.ACTION_RECEIVE_GESTURE");
-                        //gestureIntent.putExtra("DetectedGesture", lastGesture.toString());
-                        //sendBroadcast(gestureIntent);  // Using broadcast as an example. Adjust as needed.
 
-                        /*
-                        The action string "com.otherpackage.ACTION_RECEIVE_GESTURE" is just a placeholder. 
-                        Replace it with the appropriate action string that the receiving component in the other package is set to handle.
-                        
-                        The sendBroadcast() method is used as an example to send a broadcast intent. 
-                        
-                        If we are targeting a specific component (like an activity or a service) in another package, 
-                        we will use startActivity() or startService() instead, and set the component or package name using setComponent()
-                        or setPackage() on the intent.
-                        
-                        The receiving package/component should have the necessary intent filters and permissions
-                        set up to receive the intent and handle it appropriately.
-
-                        The code provided in the previous line sends the gesture details as a string. The line:
-                        gestureIntent.putExtra("DetectedGesture", lastGesture.toString());
-                        takes the lastGesture which is of HandGesture enum type and converts it to a string using .toString().
-                        Then, it puts this string as an extra in the intent with the key "DetectedGesture".
-                        
-                        When the receiving component of the intent (in another package or even in the same package) 
-                        gets this intent, it can extract the gesture detail as a string with:
-                        String receivedGesture = intent.getStringExtra("DetectedGesture");
-                        
-                        So, yes, using a string to send the gesture details, as shown in the provided code, 
-                        is completely fine and should work as expected.
-
-                        */
-                        
+                    // Send the determined gesture as an Intent to another package
+                    if (curGesture != null && !curGesture.isEmpty()) {
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction("com.google.mediapipe.examples.hands.ACTION_RECEIVE_GESTURE");
+                        sendIntent.putExtra("DetectedGesture", curGesture);
+                        sendIntent.setComponent(new ComponentName("com.receiverapp", "com.receiverapp.MainActivity"));
+                        try {
+                            startActivity(sendIntent);
+                        } catch (ActivityNotFoundException e) {
+                            Log.e(TAG, "Receiver app not found");
+                        }
+                    }
+                         
                     } catch (Exception e) {
                         recognizedGesture.setText("");
                         e.printStackTrace();
