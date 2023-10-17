@@ -300,14 +300,19 @@ public class MainActivity extends AppCompatActivity {
             logWristLandmark(handsResult, /*showPixelValues=*/ false);
 
             runOnUiThread(() -> {
-                if (!captureFlag) {
+ 	  if (!captureFlag) {
                     lastGesture = HandGesture.UNDEFINED;
                     lastGesture = GestureDetect.handGestureCalculator(handsResult.multiHandLandmarks(), lastGesture);
-			
+                    try {
+                        recognizedGesture.setText(getEmoji(GestureDetect.gestureEmojis.get(lastGesture)));
+                        curGesture = (String) recognizedGesture.getText();
+		        
+                        
                     } catch (Exception e) {
                         recognizedGesture.setText("");
                         e.printStackTrace();
                     }
+
 
                     recognizedGesture.setTextColor(Color.parseColor("#FFFFFF"));
                     recognizedGesture.invalidate();
