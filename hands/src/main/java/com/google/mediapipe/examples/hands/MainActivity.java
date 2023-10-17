@@ -309,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
                         curGesture = (String) recognizedGesture.getText();
 			
 			// Send the determined gesture as an Intent to another package
-	                /*if (curGesture != null && !curGesture.isEmpty()) {
+	                if (curGesture != null && !curGesture.isEmpty()) {
 	                    Intent sendIntent = new Intent();
 	                    sendIntent.setAction("com.google.mediapipe.examples.hands.ACTION_RECEIVE_GESTURE");
 	                    sendIntent.putExtra("DetectedGesture", curGesture);
@@ -319,10 +319,10 @@ public class MainActivity extends AppCompatActivity {
 	                    } catch (ActivityNotFoundException e) {
 	                        Log.e(TAG, "Receiver app not found");
 	                    }
-	                }*/
+	                }
 
 			    // Send the determined gesture as an Intent to another package
-				if (curGesture != null && !curGesture.isEmpty()) {
+			/*	if (curGesture != null && !curGesture.isEmpty()) {
 				
 				    new Handler().postDelayed(() -> {
 				        if (curGesture != null && !curGesture.isEmpty()) {
@@ -337,7 +337,7 @@ public class MainActivity extends AppCompatActivity {
 				            }
 				        }
 				    }, 5000);  // 2000 ms (2 seconds) delay
-				}
+				}*/
                         
                     } catch (Exception e) {
                         recognizedGesture.setText("");
