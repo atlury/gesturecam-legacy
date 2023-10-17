@@ -306,7 +306,19 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         recognizedGesture.setText(getEmoji(GestureDetect.gestureEmojis.get(lastGesture)));
                         curGesture = (String) recognizedGesture.getText();
-		        
+			
+			// Send the determined gesture as an Intent to another package
+	                if (curGesture != null && !curGesture.isEmpty()) {
+	                    Intent sendIntent = new Intent();
+	                    sendIntent.setAction("com.google.mediapipe.examples.hands.ACTION_RECEIVE_GESTURE");
+	                    sendIntent.putExtra("DetectedGesture", curGesture);
+	                    sendIntent.setComponent(new ComponentName("com.receiverapp", "com.receiverapp.MainActivity"));
+	                    try {
+	                        startActivity(sendIntent);
+	                    } catch (ActivityNotFoundException e) {
+	                        Log.e(TAG, "Receiver app not found");
+	                    }
+	                }   
                         
                     } catch (Exception e) {
                         recognizedGesture.setText("");
