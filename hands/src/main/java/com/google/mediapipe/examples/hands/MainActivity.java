@@ -301,6 +301,9 @@ public class MainActivity extends AppCompatActivity {
                     lastGesture = HandGesture.UNDEFINED;
                     lastGesture = GestureDetect.handGestureCalculator(handsResult.multiHandLandmarks(), lastGesture);
 
+	            try {
+                        recognizedGesture.setText(getEmoji(GestureDetect.gestureEmojis.get(lastGesture)));
+                        curGesture = (String) recognizedGesture.getText();
 
                     // Send the determined gesture as an Intent to another package
                     if (curGesture != null && !curGesture.isEmpty()) {
