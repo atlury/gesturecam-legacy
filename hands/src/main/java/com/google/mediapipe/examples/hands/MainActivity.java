@@ -1,6 +1,8 @@
 
 package com.google.mediapipe.examples.hands;
 
+import android.content.ComponentName;
+
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentValues;
