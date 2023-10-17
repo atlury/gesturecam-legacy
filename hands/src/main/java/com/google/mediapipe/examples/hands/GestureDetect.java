@@ -38,29 +38,29 @@ public class GestureDetect {
             float pseudoFixKeyPoint = landmarkList.get(2).getX();
             if (pseudoFixKeyPoint < landmarkList.get(9).getX()) {
                 if (landmarkList.get(3).getX() < pseudoFixKeyPoint && landmarkList.get(4).getX() < pseudoFixKeyPoint) {
-                    thumbIsOpen = false;
+                    thumbIsOpen = true;
                 }
             }
             if (pseudoFixKeyPoint > landmarkList.get(9).getX()) {
                 if (landmarkList.get(3).getX() > pseudoFixKeyPoint && landmarkList.get(4).getX() > pseudoFixKeyPoint) {
-                    thumbIsOpen = false;
+                    thumbIsOpen = true;
                 }
             }
             pseudoFixKeyPoint = landmarkList.get(6).getY();
             if (landmarkList.get(7).getY() < pseudoFixKeyPoint && landmarkList.get(8).getY() < landmarkList.get(7).getY()) {
-                firstFingerIsOpen = false;
+                firstFingerIsOpen = true;
             }
             pseudoFixKeyPoint = landmarkList.get(10).getY();
             if (landmarkList.get(11).getY() < pseudoFixKeyPoint && landmarkList.get(12).getY() < landmarkList.get(11).getY()) {
-                secondFingerIsOpen = false;
+                secondFingerIsOpen = true;
             }
             pseudoFixKeyPoint = landmarkList.get(14).getY();
             if (landmarkList.get(15).getY() < pseudoFixKeyPoint && landmarkList.get(16).getY() < landmarkList.get(15).getY()) {
-                thirdFingerIsOpen = false;
+                thirdFingerIsOpen = true;
             }
             pseudoFixKeyPoint = landmarkList.get(18).getY();
             if (landmarkList.get(19).getY() < pseudoFixKeyPoint && landmarkList.get(20).getY() < landmarkList.get(19).getY()) {
-                fourthFingerIsOpen = false;
+                fourthFingerIsOpen = true;
             }
 
             // TODO: writing this in a nested fashion might be better, right now reaching "On the Phone" is difficult
