@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     private ImageCapture imageCapture;
 
-    private volatile String curGesture = HandGesture.UNDEFINED.toString();
+    private String curGesture = HandGesture.UNDEFINED.toString();
 
 
     @Override
